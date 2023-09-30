@@ -1,0 +1,101 @@
+﻿@model ContosoSite.Models.сотрудники
+
+@{
+    ViewBag.Title = "";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+<h1>Сотрудники</h1>
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm(Html.BeginForm("Edit", "Сотрудники", null, FormMethod.Post, new { enctype = "multipart/form-data" })))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.код_сотрудника)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ФИО, "ФИО",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ФИО, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.ФИО, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.дата_рождения, "Дата рождения", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.дата_рождения, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.дата_рождения, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.номер, "Номер", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.номер, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.номер, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.должность, "Должность", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.должность, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.должность, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.паспортные_данные, "Паспортные данные", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.паспортные_данные, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.паспортные_данные, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="editor-label">Фото</div>
+                <div class="editor-field"></div>
+            @if (Model.фото == null)
+            {
+                @:None
+            }
+            else
+            {
+                byte[] photo = Model.фото;
+                string imageSrc = null;
+                if (photo != null)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    ms.Write(photo, 0, photo.Length);
+                    string imageBase64 = Convert.ToBase64String(ms.ToArray());
+                    imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                    string base64String = Convert.ToBase64String(photo, 0, photo.Length);
+                }
+
+                <img class="image_edit" width="250" height="150" src="@imageSrc" />
+            }
+            <div>Выбрать новую фотографию:</div>
+            <div>
+            <input class="buttTubDetails" type="file" name="upload" /></div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <div class="buttTubDetails" style="width: 130px; margin-bottom: 15px;">@Html.ActionLink("Вернуться назад", "Index")</div>
+</div>

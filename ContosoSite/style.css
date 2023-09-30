@@ -1,0 +1,357 @@
+﻿@font-face {
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Readex Pro', sans-serif;
+}
+body {
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Nunito', sans-serif;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+a .buttLink {
+    color: #333;
+    text-decoration: none;
+}
+.jumbotron {
+    background-color: #8A2BE2;
+    margin-top: 40px;
+}
+.jumbotron .h1-home {
+        letter-spacing: 0px;
+        line-height: 55px;
+        margin-left: 200px;
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 400;
+        color: #fff;
+        font-size: 60px;
+}
+.logo{
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+.home-pic{
+    border-radius: 5px;
+    width: 800px;
+    -webkit-filter: blur(6px) brightness(0.9);
+    margin: 20px 0px 20px 110px;
+}
+.but-home {
+    width: 270px;
+    height: 270px;
+    background-color: #8A2BE2;
+    color: #333;
+    font-size: 25px;
+    display: inline-block;
+    margin-left: 60px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s;
+}
+a .gif {
+    width: 0px;
+    height: 0px;
+    transition: 3s;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    border-radius: 50px;
+}
+a:hover .gif {
+    width: 150px;
+    height: 150px;
+    display: block;
+    opacity: 1;
+    transition: 3s;
+    -webkit-filter: blur(1px);
+}
+.but-home:hover{
+    background-color: #fff;
+    transition: 0.5s;
+    transform: scale(1.2);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+.image_sotr {
+    border-radius: 5px;
+    transition: 0.5s;
+    -webkit-filter: brightness(0.4);
+}
+.image_sotr:hover{
+    transform: scale(1.2);
+    transition: 0.5s;
+    -webkit-filter: brightness(1);
+}
+.image_edit{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+}
+.editor-label{
+    margin-left: 17px;
+}
+.but-block a {
+    text-decoration: none;
+    color: #333;
+}
+p {
+    color: #333;
+}
+p a{
+    color: #333;
+    text-decoration: none;
+}
+a .but-search {
+    text-decoration: none;
+}
+.but-search {
+    text-decoration: none;
+    color: #c9f1ff;
+    font-size: 12px;
+    padding: 8px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    width: 100px;
+    background-color: #333;
+    border-radius: 4px;
+    border: none;
+    transition: 0.5s;
+}
+.but-search:hover{
+    color: #333;
+    background-color: #c9f1ff;
+    transition: 0.5s;
+}
+.seacrchString {
+    font-size: 15px;
+    color: #333;
+    margin: 0px;
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 2px solid #6e6e6e;
+}
+input .seacrchString {
+    color: #333;
+    background-color: #000;
+}
+.seacrchString:active, :hover, :focus{
+    outline: 0;
+    outline-offset: 0;
+}
+.seacrchStringAut {
+    font-size: 18px;
+    color: #333;
+    margin: 0px;
+    width: 280px;
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 2px solid #333;
+}
+.seacrchStringAut:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    color: #333;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+.table {
+    background-color: #fff;
+    color: #333;
+    border: none;
+    text-align: left;
+    box-shadow: 0px 0px 53px 10px rgba(34, 60, 80, 0.15);
+    border-radius: 7px;
+    border-top: none;
+}
+.tableAllButt {
+    padding: 5px 5px 5px 5px;
+    margin: 0 5px 0 5px;
+    font-size: 13px;
+}
+.buttTubEdit {
+    text-align: center;
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+    border-radius: 5px;
+    background-color: #a6ff80;
+    color: #5a6e51;
+    transition: 0.3s;
+}
+.buttTubEdit:hover{
+    background-color: #6af72d;
+    color: #76a164;
+    transition: 0.3s;
+}
+.buttTubEdit a{
+    text-decoration: none;
+    color: #5a6e51;
+}
+.buttTubDetails {
+    text-align: center;
+    margin: 0px 0px 5px 0px;
+    padding: 5px;
+    border-radius: 5px;
+    color: #333;
+    background-color: #81b0fd;
+    transition: 0.3s;
+}
+.buttTubDetails:hover {
+    background-color: #a6c8ff;
+    transition: 0.3s;
+}
+.buttTubDetails a {
+    text-decoration: none;
+    color: #333;
+}
+.buttTubDel {
+    text-align: center;
+    margin: 0px 0px 5px 0px;
+    padding: 5px;
+    border-radius: 5px;
+    color: #333;
+    background-color: #ff3f3f;
+}
+.buttTubDel:hover {
+    margin: 0px 0px 5px 0px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #ff6969;
+}
+.buttTubDel a {
+    text-decoration: none;
+    color: #333;
+}
+.butCreate {
+    text-align: center;
+    margin: 50px 0px 0px 82%;
+    padding: 7px;
+    width: 200px;
+    border-radius: 5px;
+    color: #333;
+    background-color: #52ff7d;
+    transition: 0.3s;
+    font-size: 17px;
+    box-shadow: 0px 0px 20px 5px rgba(34, 60, 80, 0.15);
+}
+.butCreate:hover{
+    color: #333;
+    background-color: #9ffcb6;
+    transition: 0.3s;
+}
+.butCreate a{
+    text-decoration: none;
+}
+.seacrhBox {
+    color: #fff;
+    width: 530px;
+    font-size: 16px;
+    height: 100px;
+    margin-left: 320px;
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: #c587ff;
+    padding-top: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 0px 20px 10px rgba(34, 60, 80, 0.20);
+}
+.seacrhBoxAuto {
+    color: #fff;
+    width: 570px;
+    font-size: 16px;
+    height: 100px;
+    margin-left: 320px;
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: #c587ff;
+    padding-top: 30px;
+    padding-left: 20px;
+    box-shadow: 0px 0px 20px 10px rgba(34, 60, 80, 0.20);
+}
+.form-horizontal {
+    color: #333;
+    align-content: center;
+}
+.form-horizontal .form-group{
+    margin: 20px 0px 0px 300px;
+}
+.form-horizontal .control-label{
+    font-size: 17px;
+}
+.col-md-offset-2{
+    margin-left: 17%;
+}
+.col-md-offset-2 .btn-default{
+    border: none;
+    font-size: 18px;
+    width: 300px;
+    background-color: #DCDCDC;
+    color: #333;
+    transition: 0.3s;
+}
+.col-md-offset-2 .btn-default:hover{
+    border: none;
+    width: 300px;
+    background-color: #ADFF2F;
+    color: #333;
+    transition: 0.3s;
+}
+.col-md-offset-2 .btn-default:active, :focus{
+    outline: 0;
+    outline-offset: 0;
+}
+.navbar-inverse .navbar-brand {
+    color: #A9A9A9;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    font-weight: 400;
+    transition: 0.5s;
+}
+.navbar-inverse .navbar-brand:hover{
+    color: #000;
+    transition: 0.5s;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #A9A9A9;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 400;
+    transition: 0.5s;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #000;
+    transition: 0.5s;
+}
+.navbar-collapse .collapse {
+    color: #333;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 400;
+}
+.navbar-inverse {
+    border: none;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px 5px rgba(34, 60, 80, 0.15);
+}

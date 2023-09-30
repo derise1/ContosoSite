@@ -1,0 +1,85 @@
+﻿@model ContosoSite.Models.заказы
+
+@{
+    ViewBag.Title = "";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+<h1>Заказы</h1>
+<h2>Подробности</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Код автомобиля
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.код_автомобиля)
+        </dd>
+
+        <dt>
+            Код клиента
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.код_клиента)
+        </dd>
+
+        <dt>
+            Дата приема
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.дата_приема)
+        </dd>
+
+        <dt>
+            Дата выдачи
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.дата_выдачи)
+        </dd>
+
+        <dt>
+            Вид работ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.вид_работ)
+        </dd>
+
+        <dt>
+            Сумма работ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.сумма_работ)
+        </dd>
+
+        <dt>
+            Наименование товара
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.запчасти.наименование_товара)
+        </dd>
+
+        <dt>
+            ФИО
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.сотрудники.ФИО)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="buttTubEdit" style="width: 130px; margin-bottom: 15px;">@Html.ActionLink("Редактирование", "Edit", new { id = Model.код_заказа })</div>
+    <div class="buttTubDetails" style="width: 130px; margin-bottom: 15px;">@Html.ActionLink("Вернуться назад", "Index")</div>
+</p>

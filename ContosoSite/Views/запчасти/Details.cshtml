@@ -1,0 +1,44 @@
+﻿@model ContosoSite.Models.запчасти
+
+@{
+    ViewBag.Title = "";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+<h1>Запчасти</h1>
+<h2>Подробности</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Наименование товара
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.наименование_товара)
+        </dd>
+
+        <dt>
+            Количество на складе
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.количество_на_складе)
+        </dd>
+
+        <dt>
+            ФИО
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.поставщики.ФИО)
+        </dd>
+    </dl>
+</div>
+<p>
+    <div class="buttTubEdit" style="width: 130px; margin-bottom: 15px;">@Html.ActionLink("Редактирование", "Edit", new { id = Model.код_товара })</div>
+    <div class="buttTubDetails" style="width: 130px; margin-bottom: 15px;">@Html.ActionLink("Вернуться назад", "Index")</div>
+</p>

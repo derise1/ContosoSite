@@ -1,0 +1,54 @@
+﻿@model ContosoSite.Models.запчасти
+
+@{
+    ViewBag.Title = "";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+<h1>Запчасти</h1>
+<h2>Создать</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.наименование_товара, "Наименование товара",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.наименование_товара, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.наименование_товара, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.количество_на_складе, "Количество на складе", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.количество_на_складе, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.количество_на_складе, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.поставщик, "Поставщик", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("поставщик", null, htmlAttributes: new { @class = "seacrchStringAut" })
+                @Html.ValidationMessageFor(model => model.поставщик, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Создать" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <div class="buttTubDetails" style="width: 130px; margin-bottom: 15px;">@Html.ActionLink("Вернуться назад", "Index")</div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model ContosoSite.Models.авто
+
+@{
+    ViewBag.Title = "";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+<h1>Авто</h1>
+<h2>Удаление</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            VIN
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vin)
+        </dd>
+
+        <dt>
+            Марка автомобиля
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.марка_автомобиля)
+        </dd>
+
+        <dt>
+            Модель автомобиля
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.модель_автомобиля)
+        </dd>
+
+        <dt>
+            Год выпуска
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.год_выпуска)
+        </dd>
+
+        <dt>
+            Вид работ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.заказы.вид_работ)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" style="border:none; background-color: #ff3f3f; width: 130px; margin-bottom: 15px;" />
+            <div class="buttTubDetails" style="width: 130px; margin-bottom: 15px;">@Html.ActionLink("Вернуться назад", "Index")</div>
+        </div>
+    }
+</div>

@@ -1,0 +1,82 @@
+﻿@model ContosoSite.Models.заказы
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>заказы</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.код_автомобиля)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.код_автомобиля)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.код_клиента)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.код_клиента)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.дата_приема)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.дата_приема)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.дата_выдачи)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.дата_выдачи)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.вид_работ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.вид_работ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.сумма_работ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.сумма_работ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.запчасти.наименование_товара)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.запчасти.наименование_товара)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.сотрудники.ФИО)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.сотрудники.ФИО)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.код_заказа }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

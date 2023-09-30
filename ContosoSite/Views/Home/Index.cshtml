@@ -1,0 +1,24 @@
+﻿<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+
+<div class="jumbotron">
+    <h1 class="h1-home">СЕРВИС У ДАНИЛЫЧА</h1>
+    @if (Session["login"] == null)
+    {
+        <img class="home-pic" src="~/image/avtoservis.jpg">
+    }
+
+    @if (Session["login"] != null)
+    {
+        <h2 style="color: #333">Добро пожаловать в систему!</h2>
+        <div class="but-block">
+            <a class="but-home" onclick="location.href='@Url.Action("Index", "Заказы")';return false;">Заказы<img class="gif" src="~/image/order.gif" /></a>
+            <a class="but-home" onclick="location.href='@Url.Action("Index", "Авто")';return false;">Авто<img class="gif" src="~/image/auto.gif" /></a>
+            <a class="but-home" onclick="location.href='@Url.Action("Index", "Запчасти")';return false;">Запчасти<img class="gif" src="~/image/zapchasti.gif" /></a>
+            <a class="but-home" onclick="location.href='@Url.Action("Index", "Поставщики")';return false;">Поставщики<img class="gif" src="~/image/post.gif" /></a>
+            <a class="but-home" onclick="location.href='@Url.Action("Index", "Сотрудники")';return false;">Сотрудник<img class="gif" src="~/image/people.gif" /></a>
+        </div>
+    }
+</div>

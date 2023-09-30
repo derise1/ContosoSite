@@ -1,0 +1,74 @@
+﻿@model ContosoSite.Models.авто
+
+@{
+    ViewBag.Title = "";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+
+<h1>Авто</h1>
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.код)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.код_автомобиля, "Код автомобиля", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("код_автомобиля", null, htmlAttributes: new { @class = "seacrchStringAut" })
+                @Html.ValidationMessageFor(model => model.код_автомобиля, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.vin, "VIN номер", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vin, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.vin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.марка_автомобиля, "Марка автомобиля", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.марка_автомобиля, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.марка_автомобиля, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.модель_автомобиля, "Модель автомобиля", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.модель_автомобиля, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.модель_автомобиля, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.год_выпуска, "Год выпуска", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.год_выпуска, new { htmlAttributes = new { @class = "seacrchStringAut" } })
+                @Html.ValidationMessageFor(model => model.год_выпуска, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <div class="buttTubDetails" style="width: 130px; margin-bottom: 15px;">@Html.ActionLink("Вернуться назад", "Index")</div>
+</div>

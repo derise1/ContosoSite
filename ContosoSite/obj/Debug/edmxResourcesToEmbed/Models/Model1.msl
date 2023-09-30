@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DanilichDBModelContainer" CdmEntityContainer="DanilichDBEntities11">
+    <EntitySetMapping Name="авто">
+      <EntityTypeMapping TypeName="DanilichDBModel.авто">
+        <MappingFragment StoreEntitySet="авто">
+          <ScalarProperty Name="код" ColumnName="код" />
+          <ScalarProperty Name="код_автомобиля" ColumnName="код_автомобиля" />
+          <ScalarProperty Name="vin" ColumnName="vin" />
+          <ScalarProperty Name="марка_автомобиля" ColumnName="марка_автомобиля" />
+          <ScalarProperty Name="модель_автомобиля" ColumnName="модель_автомобиля" />
+          <ScalarProperty Name="год_выпуска" ColumnName="год_выпуска" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="заказы">
+      <EntityTypeMapping TypeName="DanilichDBModel.заказы">
+        <MappingFragment StoreEntitySet="заказы">
+          <ScalarProperty Name="код_заказа" ColumnName="код_заказа" />
+          <ScalarProperty Name="код_автомобиля" ColumnName="код_автомобиля" />
+          <ScalarProperty Name="код_клиента" ColumnName="код_клиента" />
+          <ScalarProperty Name="дата_приема" ColumnName="дата_приема" />
+          <ScalarProperty Name="дата_выдачи" ColumnName="дата_выдачи" />
+          <ScalarProperty Name="вид_работ" ColumnName="вид_работ" />
+          <ScalarProperty Name="сумма_работ" ColumnName="сумма_работ" />
+          <ScalarProperty Name="товары_для_ремонта" ColumnName="товары_для_ремонта" />
+          <ScalarProperty Name="сотрудник" ColumnName="сотрудник" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="запчасти">
+      <EntityTypeMapping TypeName="DanilichDBModel.запчасти">
+        <MappingFragment StoreEntitySet="запчасти">
+          <ScalarProperty Name="код_товара" ColumnName="код_товара" />
+          <ScalarProperty Name="наименование_товара" ColumnName="наименование_товара" />
+          <ScalarProperty Name="количество_на_складе" ColumnName="количество_на_складе" />
+          <ScalarProperty Name="поставщик" ColumnName="поставщик" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="поставщики">
+      <EntityTypeMapping TypeName="DanilichDBModel.поставщики">
+        <MappingFragment StoreEntitySet="поставщики">
+          <ScalarProperty Name="код_поставщика" ColumnName="код_поставщика" />
+          <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+          <ScalarProperty Name="дата_рождения" ColumnName="дата_рождения" />
+          <ScalarProperty Name="номер_телефона" ColumnName="номер_телефона" />
+          <ScalarProperty Name="компания" ColumnName="компания" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="сотрудники">
+      <EntityTypeMapping TypeName="DanilichDBModel.сотрудники">
+        <MappingFragment StoreEntitySet="сотрудники">
+          <ScalarProperty Name="код_сотрудника" ColumnName="код_сотрудника" />
+          <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+          <ScalarProperty Name="дата_рождения" ColumnName="дата_рождения" />
+          <ScalarProperty Name="номер" ColumnName="номер" />
+          <ScalarProperty Name="должность" ColumnName="должность" />
+          <ScalarProperty Name="паспортные_данные" ColumnName="паспортные_данные" />
+          <ScalarProperty Name="фото" ColumnName="фото" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="авторизация">
+      <EntityTypeMapping TypeName="DanilichDBModel.авторизация">
+        <MappingFragment StoreEntitySet="авторизация">
+          <ScalarProperty Name="пароль" ColumnName="пароль" />
+          <ScalarProperty Name="логин" ColumnName="логин" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

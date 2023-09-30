@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище DanilichDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="авто">
+    <Key>
+      <PropertyRef Name="код" />
+    </Key>
+    <Property Name="код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="код_автомобиля" Type="int" Nullable="false" />
+    <Property Name="vin" Type="nvarchar" MaxLength="50" />
+    <Property Name="марка_автомобиля" Type="nvarchar" MaxLength="50" />
+    <Property Name="модель_автомобиля" Type="nvarchar" MaxLength="50" />
+    <Property Name="год_выпуска" Type="date" />
+  </EntityType>
+  <EntityType Name="авторизация">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="логин" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="пароль" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="заказы">
+    <Key>
+      <PropertyRef Name="код_заказа" />
+    </Key>
+    <Property Name="код_заказа" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="код_автомобиля" Type="int" Nullable="false" />
+    <Property Name="код_клиента" Type="int" />
+    <Property Name="дата_приема" Type="datetime" />
+    <Property Name="дата_выдачи" Type="datetime" />
+    <Property Name="вид_работ" Type="nvarchar" MaxLength="100" />
+    <Property Name="сумма_работ" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="товары_для_ремонта" Type="int" Nullable="false" />
+    <Property Name="сотрудник" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="запчасти">
+    <Key>
+      <PropertyRef Name="код_товара" />
+    </Key>
+    <Property Name="код_товара" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="наименование_товара" Type="nvarchar" MaxLength="100" />
+    <Property Name="количество_на_складе" Type="int" />
+    <Property Name="поставщик" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="поставщики">
+    <Key>
+      <PropertyRef Name="код_поставщика" />
+    </Key>
+    <Property Name="код_поставщика" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ФИО" Type="nvarchar" MaxLength="120" />
+    <Property Name="дата_рождения" Type="date" />
+    <Property Name="номер_телефона" Type="nvarchar" MaxLength="100" />
+    <Property Name="компания" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="сотрудники">
+    <Key>
+      <PropertyRef Name="код_сотрудника" />
+    </Key>
+    <Property Name="код_сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ФИО" Type="nvarchar" MaxLength="120" />
+    <Property Name="дата_рождения" Type="date" />
+    <Property Name="номер" Type="nvarchar" MaxLength="100" />
+    <Property Name="должность" Type="nvarchar" MaxLength="100" />
+    <Property Name="паспортные_данные" Type="nvarchar" MaxLength="11" />
+    <Property Name="фото" Type="image" />
+  </EntityType>
+  <Association Name="FK_авто_заказы">
+    <End Role="заказы" Type="Self.заказы" Multiplicity="1" />
+    <End Role="авто" Type="Self.авто" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="заказы">
+        <PropertyRef Name="код_заказа" />
+      </Principal>
+      <Dependent Role="авто">
+        <PropertyRef Name="код_автомобиля" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_заказы_запчасти">
+    <End Role="запчасти" Type="Self.запчасти" Multiplicity="1" />
+    <End Role="заказы" Type="Self.заказы" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="запчасти">
+        <PropertyRef Name="код_товара" />
+      </Principal>
+      <Dependent Role="заказы">
+        <PropertyRef Name="товары_для_ремонта" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_запчасти_поставщик">
+    <End Role="поставщики" Type="Self.поставщики" Multiplicity="1" />
+    <End Role="запчасти" Type="Self.запчасти" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="поставщики">
+        <PropertyRef Name="код_поставщика" />
+      </Principal>
+      <Dependent Role="запчасти">
+        <PropertyRef Name="поставщик" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище DanilichDBModelContainer">
+    <EntitySet Name="авто" EntityType="Self.авто" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="авторизация" EntityType="Self.авторизация" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="заказы" EntityType="Self.заказы" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="запчасти" EntityType="Self.запчасти" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="поставщики" EntityType="Self.поставщики" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="сотрудники" EntityType="Self.сотрудники" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_авто_заказы" Association="Self.FK_авто_заказы">
+      <End Role="заказы" EntitySet="заказы" />
+      <End Role="авто" EntitySet="авто" />
+    </AssociationSet>
+    <AssociationSet Name="FK_заказы_запчасти" Association="Self.FK_заказы_запчасти">
+      <End Role="запчасти" EntitySet="запчасти" />
+      <End Role="заказы" EntitySet="заказы" />
+    </AssociationSet>
+    <AssociationSet Name="FK_запчасти_поставщик" Association="Self.FK_запчасти_поставщик">
+      <End Role="поставщики" EntitySet="поставщики" />
+      <End Role="запчасти" EntitySet="запчасти" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

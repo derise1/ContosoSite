@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ContosoSite.Models.авторизация>
+
+@{
+    ViewBag.Title = "Авторизация";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+
+<h2>Авторизация</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.пароль)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.пароль)
+            </td>
+            <td>
+                @Html.ActionLink("Редактикторовать", "Edit", new { id = item.логин })
+                @Html.ActionLink("Подробнее", "Details", new { id = item.логин })
+                @Html.ActionLink("Удалить", "Delete", new { id = item.логин })
+            </td>
+        </tr>
+    }
+
+</table>

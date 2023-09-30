@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ContosoSite.Models.запчасти>
+
+@{
+    ViewBag.Title = "";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Readex+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/style.css">
+
+<h2>Запчасти</h2>
+
+<p>
+    <div class="butCreate">@Html.ActionLink("Создать новую запись", "Create")</div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Наименование товара
+        </th>
+        <th>
+            Количество на складе
+        </th>
+        <th>
+            ФИО
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.наименование_товара)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.количество_на_складе)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.поставщики.ФИО)
+            </td>
+            <td>
+                @if (Session["login"].Equals("admin"))
+                {
+                    <div class="buttTubEdit">@Html.ActionLink("Редактировать", "Edit", new { id = item.код_товара })</div>
+                    <div class="buttTubDetails">@Html.ActionLink("Подробнее", "Details", new { id = item.код_товара })</div>
+                    <div class="buttTubDel">@Html.ActionLink("Удалить", "Delete", new { id = item.код_товара })</div>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

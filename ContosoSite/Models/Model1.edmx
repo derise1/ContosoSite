@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище DanilichDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="авто">
+          <Key>
+            <PropertyRef Name="код" />
+          </Key>
+          <Property Name="код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="код_автомобиля" Type="int" Nullable="false" />
+          <Property Name="vin" Type="nvarchar" MaxLength="50" />
+          <Property Name="марка_автомобиля" Type="nvarchar" MaxLength="50" />
+          <Property Name="модель_автомобиля" Type="nvarchar" MaxLength="50" />
+          <Property Name="год_выпуска" Type="date" />
+        </EntityType>
+        <EntityType Name="авторизация">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="логин" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="пароль" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="заказы">
+          <Key>
+            <PropertyRef Name="код_заказа" />
+          </Key>
+          <Property Name="код_заказа" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="код_автомобиля" Type="int" Nullable="false" />
+          <Property Name="код_клиента" Type="int" />
+          <Property Name="дата_приема" Type="datetime" />
+          <Property Name="дата_выдачи" Type="datetime" />
+          <Property Name="вид_работ" Type="nvarchar" MaxLength="100" />
+          <Property Name="сумма_работ" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="товары_для_ремонта" Type="int" Nullable="false" />
+          <Property Name="сотрудник" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="запчасти">
+          <Key>
+            <PropertyRef Name="код_товара" />
+          </Key>
+          <Property Name="код_товара" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="наименование_товара" Type="nvarchar" MaxLength="100" />
+          <Property Name="количество_на_складе" Type="int" />
+          <Property Name="поставщик" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="поставщики">
+          <Key>
+            <PropertyRef Name="код_поставщика" />
+          </Key>
+          <Property Name="код_поставщика" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="120" />
+          <Property Name="дата_рождения" Type="date" />
+          <Property Name="номер_телефона" Type="nvarchar" MaxLength="100" />
+          <Property Name="компания" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="сотрудники">
+          <Key>
+            <PropertyRef Name="код_сотрудника" />
+          </Key>
+          <Property Name="код_сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="120" />
+          <Property Name="дата_рождения" Type="date" />
+          <Property Name="номер" Type="nvarchar" MaxLength="100" />
+          <Property Name="должность" Type="nvarchar" MaxLength="100" />
+          <Property Name="паспортные_данные" Type="nvarchar" MaxLength="11" />
+          <Property Name="фото" Type="image" />
+        </EntityType>
+        <Association Name="FK_авто_заказы">
+          <End Role="заказы" Type="Self.заказы" Multiplicity="1" />
+          <End Role="авто" Type="Self.авто" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="заказы">
+              <PropertyRef Name="код_заказа" />
+            </Principal>
+            <Dependent Role="авто">
+              <PropertyRef Name="код_автомобиля" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_заказы_запчасти">
+          <End Role="запчасти" Type="Self.запчасти" Multiplicity="1" />
+          <End Role="заказы" Type="Self.заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="запчасти">
+              <PropertyRef Name="код_товара" />
+            </Principal>
+            <Dependent Role="заказы">
+              <PropertyRef Name="товары_для_ремонта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_запчасти_поставщик">
+          <End Role="поставщики" Type="Self.поставщики" Multiplicity="1" />
+          <End Role="запчасти" Type="Self.запчасти" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="поставщики">
+              <PropertyRef Name="код_поставщика" />
+            </Principal>
+            <Dependent Role="запчасти">
+              <PropertyRef Name="поставщик" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DanilichDBModelContainer">
+          <EntitySet Name="авто" EntityType="Self.авто" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="авторизация" EntityType="Self.авторизация" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="заказы" EntityType="Self.заказы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="запчасти" EntityType="Self.запчасти" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="поставщики" EntityType="Self.поставщики" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="сотрудники" EntityType="Self.сотрудники" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_авто_заказы" Association="Self.FK_авто_заказы">
+            <End Role="заказы" EntitySet="заказы" />
+            <End Role="авто" EntitySet="авто" />
+          </AssociationSet>
+          <AssociationSet Name="FK_заказы_запчасти" Association="Self.FK_заказы_запчасти">
+            <End Role="запчасти" EntitySet="запчасти" />
+            <End Role="заказы" EntitySet="заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_запчасти_поставщик" Association="Self.FK_запчасти_поставщик">
+            <End Role="поставщики" EntitySet="поставщики" />
+            <End Role="запчасти" EntitySet="запчасти" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DanilichDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="авто">
+          <Key>
+            <PropertyRef Name="код" />
+          </Key>
+          <Property Name="код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="код_автомобиля" Type="Int32" Nullable="false" />
+          <Property Name="vin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="марка_автомобиля" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="модель_автомобиля" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="год_выпуска" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="заказы" Relationship="Self.FK_авто_заказы" FromRole="авто" ToRole="заказы" />
+        </EntityType>
+        <EntityType Name="заказы">
+          <Key>
+            <PropertyRef Name="код_заказа" />
+          </Key>
+          <Property Name="код_заказа" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="код_автомобиля" Type="Int32" Nullable="false" />
+          <Property Name="код_клиента" Type="Int32" />
+          <Property Name="дата_приема" Type="DateTime" Precision="3" />
+          <Property Name="дата_выдачи" Type="DateTime" Precision="3" />
+          <Property Name="вид_работ" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="сумма_работ" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="товары_для_ремонта" Type="Int32" Nullable="false" />
+          <Property Name="сотрудник" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="авто" Relationship="Self.FK_авто_заказы" FromRole="заказы" ToRole="авто" />
+          <NavigationProperty Name="запчасти" Relationship="Self.FK_заказы_запчасти" FromRole="заказы" ToRole="запчасти" />
+          <NavigationProperty Name="сотрудники" Relationship="Self.FK_заказы_сотрудник" FromRole="заказы" ToRole="сотрудники" />
+        </EntityType>
+        <EntityType Name="запчасти">
+          <Key>
+            <PropertyRef Name="код_товара" />
+          </Key>
+          <Property Name="код_товара" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="наименование_товара" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="количество_на_складе" Type="Int32" />
+          <Property Name="поставщик" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="заказы" Relationship="Self.FK_заказы_запчасти" FromRole="запчасти" ToRole="заказы" />
+          <NavigationProperty Name="поставщики" Relationship="Self.FK_запчасти_поставщик" FromRole="запчасти" ToRole="поставщики" />
+        </EntityType>
+        <EntityType Name="поставщики">
+          <Key>
+            <PropertyRef Name="код_поставщика" />
+          </Key>
+          <Property Name="код_поставщика" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="дата_рождения" Type="DateTime" Precision="0" />
+          <Property Name="номер_телефона" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="компания" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="запчасти" Relationship="Self.FK_запчасти_поставщик" FromRole="поставщики" ToRole="запчасти" />
+        </EntityType>
+        <EntityType Name="сотрудники">
+          <Key>
+            <PropertyRef Name="код_сотрудника" />
+          </Key>
+          <Property Name="код_сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="дата_рождения" Type="DateTime" Precision="0" />
+          <Property Name="номер" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="должность" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="паспортные_данные" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="заказы" Relationship="Self.FK_заказы_сотрудник" FromRole="сотрудники" ToRole="заказы" />
+        </EntityType>
+        <Association Name="FK_авто_заказы">
+          <End Role="заказы" Type="Self.заказы" Multiplicity="1" />
+          <End Role="авто" Type="Self.авто" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="заказы">
+              <PropertyRef Name="код_заказа" />
+            </Principal>
+            <Dependent Role="авто">
+              <PropertyRef Name="код_автомобиля" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_заказы_запчасти">
+          <End Role="запчасти" Type="Self.запчасти" Multiplicity="1" />
+          <End Role="заказы" Type="Self.заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="запчасти">
+              <PropertyRef Name="код_товара" />
+            </Principal>
+            <Dependent Role="заказы">
+              <PropertyRef Name="товары_для_ремонта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_заказы_сотрудник">
+          <End Role="сотрудники" Type="Self.сотрудники" Multiplicity="1" />
+          <End Role="заказы" Type="Self.заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="сотрудники">
+              <PropertyRef Name="код_сотрудника" />
+            </Principal>
+            <Dependent Role="заказы">
+              <PropertyRef Name="сотрудник" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_запчасти_поставщик">
+          <End Role="поставщики" Type="Self.поставщики" Multiplicity="1" />
+          <End Role="запчасти" Type="Self.запчасти" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="поставщики">
+              <PropertyRef Name="код_поставщика" />
+            </Principal>
+            <Dependent Role="запчасти">
+              <PropertyRef Name="поставщик" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DanilichDBEntities11" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="авто" EntityType="Self.авто" />
+          <EntitySet Name="заказы" EntityType="Self.заказы" />
+          <EntitySet Name="запчасти" EntityType="Self.запчасти" />
+          <EntitySet Name="поставщики" EntityType="Self.поставщики" />
+          <EntitySet Name="сотрудники" EntityType="Self.сотрудники" />
+          <AssociationSet Name="FK_авто_заказы" Association="Self.FK_авто_заказы">
+            <End Role="заказы" EntitySet="заказы" />
+            <End Role="авто" EntitySet="авто" />
+          </AssociationSet>
+          <AssociationSet Name="FK_заказы_запчасти" Association="Self.FK_заказы_запчасти">
+            <End Role="запчасти" EntitySet="запчасти" />
+            <End Role="заказы" EntitySet="заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_заказы_сотрудник" Association="Self.FK_заказы_сотрудник">
+            <End Role="сотрудники" EntitySet="сотрудники" />
+            <End Role="заказы" EntitySet="заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_запчасти_поставщик" Association="Self.FK_запчасти_поставщик">
+            <End Role="поставщики" EntitySet="поставщики" />
+            <End Role="запчасти" EntitySet="запчасти" />
+          </AssociationSet>
+          <EntitySet Name="авторизация" EntityType="DanilichDBModel.авторизация" />
+        </EntityContainer>
+        <EntityType Name="авторизация">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="логин" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="пароль" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DanilichDBModelContainer" CdmEntityContainer="DanilichDBEntities11">
+          <EntitySetMapping Name="авто">
+            <EntityTypeMapping TypeName="DanilichDBModel.авто">
+              <MappingFragment StoreEntitySet="авто">
+                <ScalarProperty Name="код" ColumnName="код" />
+                <ScalarProperty Name="код_автомобиля" ColumnName="код_автомобиля" />
+                <ScalarProperty Name="vin" ColumnName="vin" />
+                <ScalarProperty Name="марка_автомобиля" ColumnName="марка_автомобиля" />
+                <ScalarProperty Name="модель_автомобиля" ColumnName="модель_автомобиля" />
+                <ScalarProperty Name="год_выпуска" ColumnName="год_выпуска" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="заказы">
+            <EntityTypeMapping TypeName="DanilichDBModel.заказы">
+              <MappingFragment StoreEntitySet="заказы">
+                <ScalarProperty Name="код_заказа" ColumnName="код_заказа" />
+                <ScalarProperty Name="код_автомобиля" ColumnName="код_автомобиля" />
+                <ScalarProperty Name="код_клиента" ColumnName="код_клиента" />
+                <ScalarProperty Name="дата_приема" ColumnName="дата_приема" />
+                <ScalarProperty Name="дата_выдачи" ColumnName="дата_выдачи" />
+                <ScalarProperty Name="вид_работ" ColumnName="вид_работ" />
+                <ScalarProperty Name="сумма_работ" ColumnName="сумма_работ" />
+                <ScalarProperty Name="товары_для_ремонта" ColumnName="товары_для_ремонта" />
+                <ScalarProperty Name="сотрудник" ColumnName="сотрудник" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="запчасти">
+            <EntityTypeMapping TypeName="DanilichDBModel.запчасти">
+              <MappingFragment StoreEntitySet="запчасти">
+                <ScalarProperty Name="код_товара" ColumnName="код_товара" />
+                <ScalarProperty Name="наименование_товара" ColumnName="наименование_товара" />
+                <ScalarProperty Name="количество_на_складе" ColumnName="количество_на_складе" />
+                <ScalarProperty Name="поставщик" ColumnName="поставщик" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="поставщики">
+            <EntityTypeMapping TypeName="DanilichDBModel.поставщики">
+              <MappingFragment StoreEntitySet="поставщики">
+                <ScalarProperty Name="код_поставщика" ColumnName="код_поставщика" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="дата_рождения" ColumnName="дата_рождения" />
+                <ScalarProperty Name="номер_телефона" ColumnName="номер_телефона" />
+                <ScalarProperty Name="компания" ColumnName="компания" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="сотрудники">
+            <EntityTypeMapping TypeName="DanilichDBModel.сотрудники">
+              <MappingFragment StoreEntitySet="сотрудники">
+                <ScalarProperty Name="код_сотрудника" ColumnName="код_сотрудника" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="дата_рождения" ColumnName="дата_рождения" />
+                <ScalarProperty Name="номер" ColumnName="номер" />
+                <ScalarProperty Name="должность" ColumnName="должность" />
+                <ScalarProperty Name="паспортные_данные" ColumnName="паспортные_данные" />
+                <ScalarProperty Name="фото" ColumnName="фото" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="авторизация">
+            <EntityTypeMapping TypeName="DanilichDBModel.авторизация">
+              <MappingFragment StoreEntitySet="авторизация">
+                <ScalarProperty Name="пароль" ColumnName="пароль" />
+                <ScalarProperty Name="логин" ColumnName="логин" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
